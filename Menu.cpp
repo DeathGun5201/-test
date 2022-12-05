@@ -18,8 +18,8 @@ void Menu(LinkList& L)
 				AddUser(L);
 				break;
 			case 2:
+				DeleteUser(L);
 				break;
-
 			case 3:
 				break;
 
