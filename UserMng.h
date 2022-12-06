@@ -11,4 +11,3 @@ int SearchUser(LinkList L);//查找用户
 int ReviseUser(LinkList L);//修改用户
 void ShowUser(LinkList L);//显示用户信息
 int LengthUser(LinkList& L);//求链表的长度
-
