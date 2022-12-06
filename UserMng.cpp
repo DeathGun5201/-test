@@ -7,36 +7,68 @@
 #define OVERFLOW -2
 #define OK 1
 #define ERROR -1
+using namespace std;
 
 void AddUser(LinkList &L)
 {
-	//头插法创建单链表
-	int n,i;
-	cout << "请输入用户的个数" << endl;
-	cin >> n;
-	L = new LNode;
-	L->next = NULL;//L为头结点
-	for (i = 0; i < n; i++)
+	if (L->next == NULL)
 	{
-		LNode* p = new LNode;
-		while (1)
+		//头插法创建单链表
+		int n, i;
+		cout << "请输入用户的个数" << endl;
+		cin >> n;
+		L = new LNode;
+		L->next = NULL;//L为头结点
+		for (i = 0; i < n; i++)
 		{
-			cout << "请输入第" << i+1 << "个用户的手机号" << endl;
-			cin >> p->data.id;
-			if (IsValid_UserId(p->data.id,n,L) == false)
-				printf("输入格式错误！请重新输入！（可能是第一个数字不是1或者长度大于11位）\n");
-			else
-				break;
+			LNode* p = new LNode;
+			while (1)
+			{
+				cout << "请输入第" << i + 1 << "个用户的手机号" << endl;
+				cin >> p->data.id;
+				if (IsValid_UserId(p->data.id, n, L) == false)
+					printf("输入格式错误！请重新输入！（可能是第一个数字不是1或者长度大于11位）\n");
+				else
+					break;
+			}
+			cout << "请输入第" << i + 1 << "个用户的昵称" << endl;
+			cin >> p->data.name;
+			cout << "请输入第" << i + 1 << "个用户的性别" << endl;
+			cin >> p->data.sex;
+			cout << "请输入第" << i + 1 << "个用户的年龄" << endl;
+			cin >> p->data.age;
+			p->next = L->next;
+			//p = L->next;
+			L->next = p;
 		}
-		cout << "请输入第" << i+1 << "个用户的昵称" << endl;
-		cin >> p->data.name;
-		cout << "请输入第" << i+1 << "个用户的性别" << endl;
-		cin >> p->data.sex;
-		cout << "请输入第" << i+1 << "个用户的年龄" << endl;
-		cin >> p->data.age;
-		p->next = L->next;
-		//p = L->next;
-		L->next = p;
+	}
+	else
+	{
+		int n, i;
+		cout << "请输入用户的个数" << endl;
+		cin >> n;
+		for (i = 0; i < n; i++)
+		{
+			LNode* p = new LNode;
+			while (1)
+			{
+				cout << "请输入第" << i + 1 << "个用户的手机号" << endl;
+				cin >> p->data.id;
+				if (IsValid_UserId(p->data.id, n, L) == false)
+					printf("输入格式错误！请重新输入！（可能是第一个数字不是1或者长度大于11位）\n");
+				else
+					break;
+			}
+			cout << "请输入第" << i + 1 << "个用户的昵称" << endl;
+			cin >> p->data.name;
+			cout << "请输入第" << i + 1 << "个用户的性别" << endl;
+			cin >> p->data.sex;
+			cout << "请输入第" << i + 1 << "个用户的年龄" << endl;
+			cin >> p->data.age;
+			p->next = L->next;
+			//p = L->next;
+			L->next = p;
+		}
 	}
 }
 bool IsValid_UserId(string Id,int n,LinkList &L)
@@ -69,14 +101,108 @@ int DeleteUser(LinkList &L)
 		{
 			switch (n)
 			{
-			case 1:cout << "请输入你想要删除的用户的手机号" << endl;
+			case 1:
+				while (1)
+				{
+					cout << "请输入你想要删除的用户的手机号" << endl;
+					cin >> ID;//接下来要验证 你想要删除手机号是否存在
+					/*m = 0;
+					p = L->next;
+					while (1)
+					{
+						if (p && p->data.id == ID)
+						{
+							m++;
+							break;
+						}
+						else
+						{
+							p = p->next;
+						}
+					}
+					if (m == 1)
+					{
+						break;
+					}
+					else
+					{
+						cout << "你输入的用户的手机号不存在，请重新输入！！" << endl;
+						continue;
+					}*/
+					m = 0;
+					t = L->next;
+					for (i = 0; i < LengthUser(L); i++)
+					{
+						if (ID == t->data.id)
+						{
+							m = 1;
+							break;
+						}
+						else
+						{
+							t = t->next;
+						}
+					}
+					if (m == 0)
+					{
+						cout << "你输入的用户的手机号不存在！" << endl;
+						continue;
+					}
+					else
+						break;
+				}
+					
+				
+				
+				/*while (p != NULL)
+				{
+					if (ID ==p->data.id)
+					{
+						q = p->next;
+						p->next = q->next;
+						delete q;
+					}
+					else
+					{
+						p = p->next;
+					}
+				}*/
+
+				while ((p->next) && (j < i))//这里与上面结合，因此i不再是i-1了
+				{
+					p = p->next;
+					++j;
+				}
+				if (!(p->next) || (j > i ))//这里同样不再是i-1了
+					return ERROR;
+				q = p->next;
+				p->next = q->next;
+				delete q;
+				cout << "删除成功！" << endl;
+				break;
+			case 2://这里是根据用户昵称来进行用户信息的删除
+				cout << "请输入你想要删除的用户的昵称" << endl;
 				cin >> ID;
+				p = L->next;
+				while (p && p->data.name == ID)
+				{
+					cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+					cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+					p = p->next;
+				}
+				cout << "请输入你想要删除的用户的手机号";
+				cin >> ID;
+				p = L;
+				t = L->next;
 				for (i = 0; i < LengthUser(L); i++)
 				{
-					t = L->next;
 					if (ID == t->data.id)
 					{
-						m = i;
+						break;
+					}
+					else
+					{
+						t = t->next;
 					}
 				}
 				/*while (p != NULL)
@@ -92,22 +218,23 @@ int DeleteUser(LinkList &L)
 						p = p->next;
 					}
 				}*/
-				while ((p->next) && (j < i - 1))
+
+				while ((p->next) && (j < i))
 				{
 					p = p->next;
 					++j;
 				}
-				if (!(p->next) || (j > i - 1))
+				if (!(p->next) || (j > i))
 					return ERROR;
 				q = p->next;
 				p->next = q->next;
 				delete q;
-				cout << "删除成功！" << endl;
-				break;
-			case 2:
-				cout << "请输入你想要删除的用户的昵称" << endl;
-				cin >> ID;
-				for (i = 0; i < LengthUser(L); i++)
+				//while (p && p->data.id != ID)
+				//{
+					//p = p->next;
+				//}
+				
+				/*for (i = 0; i < LengthUser(L); i++)
 				{
 					t = L->next;
 					if (ID == t->data.name)
@@ -115,19 +242,19 @@ int DeleteUser(LinkList &L)
 						m = i;
 					}
 				}
-				/*while (p != NULL)
-				{
-					if (ID ==p->data.id)
-					{
-						q = p->next;
-						p->next = q->next;
-						delete q;
-					}
-					else
-					{
-						p = p->next;
-					}
-				}*/
+				//while (p != NULL)
+				//{
+					//if (ID ==p->data.id)
+					//{
+						//q = p->next;
+						//p->next = q->next;
+						//delete q;
+					//}
+					//else
+					//{
+						//p = p->next;
+					//}
+				//}
 				while ((p->next) && (j < i - 1))
 				{
 					p = p->next;
@@ -139,7 +266,7 @@ int DeleteUser(LinkList &L)
 				p->next = q->next;
 				delete q;
 				cout << "删除成功！" << endl;
-				break;
+				break; */
 			case 0:
 				break;
 			default:cout << "请你按照要求输入指令！" << endl;
@@ -183,7 +310,7 @@ int ReviseUser(LinkList L)//修改用户
 {
 	LinkList p = L->next;
 	int lin, count = 0, age;
-	string clin;
+	string clin1,clin;
 	char sex;
 	while (1)
 	{
@@ -194,18 +321,22 @@ int ReviseUser(LinkList L)//修改用户
 		{
 		case 1:
 		{
+			p = L->next;
 			cout << "请输入要修改的用户号：";
 			cin >> clin;
 			//添加用户号查错的
-
 			cout << "请输入修改后的用户号：";
-			cin >> clin;
+			cin >> clin1;
 			//用户号查错
+			while (p && p->data.id!=clin)
+			{
+				p = p->next;
+			}
 			cout << "1.是 2.否";
 			cout << "请选择是否修改：";
 			cin >> lin;
 			if (lin == 1)
-				p->data.id = clin;
+				p->data.id = clin1;
 			else
 				continue;
 			break;
@@ -216,20 +347,35 @@ int ReviseUser(LinkList L)//修改用户
 			while (1)
 			{
 				cout << "输入要查找的昵称：";
-				cin >> clin;
+				cin >> clin1;
 				cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
-				while (p && p->data.name == clin)
-					while (1)
+				/*while (p)
+				{
+					if(p->data.name == clin)
 					{
-						cout << "请输入要修改昵称的用户的用户号：";
-						cin >> clin;
-						//添加用户号查错的
+						cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+						if (p->data.id != clin)
+						{
+
+						}
 					}
-				while (p && p->data.id != clin)
+					
+					p = p->next;
+				}*/
+				while (p && p->data.name == clin1)
 				{
 					cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+					p = p->next;
+				}
+				cout << "请输入要修改昵称的用户的用户号：";
+				cin >> clin;
+				//添加用户号查错的
+				p = L->next;
+				while (p && p->data.id != clin)
+				{
+					/*cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
 					if (cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n")
-						count++;
+						count++;*/
 					p = p->next;
 				}
 				if (count == 0)
@@ -238,19 +384,22 @@ int ReviseUser(LinkList L)//修改用户
 				cin >> lin;
 				if (lin == 1)
 				{
-					cout << "1.重新输入 2.退出";
+					/*cout << "1.重新输入 2.退出";
 					cout << "没有该用户用户，请选择重新输入或退出：";
 					cin >> lin;
 					if (lin == 1)
 						continue;
 					cout << "请输入修改的昵称：";
-					cin >> clin;
-					p->data.name = clin;
+					cin >> clin;*/
+					cout << "请输入修改为什么昵称" ;
+					cin >> clin1;
+					p->data.name = clin1;
+					cout << "改后用户信息如下" << endl;
+					cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+					cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
 				}
-				if (lin == 2 && count == 0)
+				if (lin == 2/* && count == 0*/)
 					break;
-				else
-					continue;
 				break;
 			}
 
@@ -258,12 +407,10 @@ int ReviseUser(LinkList L)//修改用户
 		}
 		case 3:
 		{
-			while (1)
-			{
-				cout << "请输入要修改性别的用户的用户号：";
-				cin >> clin;
-				//添加用户号查错的
-			}
+			p = L->next;
+			cout << "请输入要修改性别的用户的用户号：";
+			cin >> clin;
+			//添加用户号查错的
 			while (p && p->data.id != clin)
 			{
 				p = p->next;
@@ -283,6 +430,8 @@ int ReviseUser(LinkList L)//修改用户
 		}
 		case 4:
 		{
+			p = L->next;
+
 			cout << "请输入要修改年龄的用户的用户号：";
 			cin >> clin;
 			//添加用户号查错的
@@ -343,6 +492,7 @@ int SearchUser(LinkList L)//查找用户
 		{
 		case 1:
 		{
+			p = L->next;
 			cout << "请输入要查找的用户号：";
 			cin >> clin;
 			//添加用户号查错的
@@ -358,18 +508,50 @@ int SearchUser(LinkList L)//查找用户
 		{
 			while (1)
 			{
+				p = L->next;
 				cout << "输入要查找的昵称：";
 				cin >> clin;
 				cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
-				while (p)
+				/*while (p)
 				{
-					if (p->data.name == clin)
+					if(p->data.name == clin)
+					{
 						cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
-					if (cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n")
-						count++;
+						if (p->data.id != clin)
+						{
+
+						}
+					}
+
+					p = p->next;
+				}*/
+				while (p && p->data.name == clin)
+				{
+					cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
 					p = p->next;
 				}
-				if (count == 0)
+				break;
+
+				/*while (1)
+				{
+					cout << "输入要查找的昵称：";
+					cin >> clin;
+					cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+					while (p)
+					{
+						if (p->data.name == clin)
+							cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+						//if (cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n")
+							//count++;
+						else
+						{
+							p = p->next;
+						}
+					}
+					break;
+				}*/
+				
+				/*if (count == 0)
 				{
 					cout << "1.重新输入 2.退出";
 					cout << "没有该用户用户，请选择重新输入或退出：";
@@ -378,12 +560,13 @@ int SearchUser(LinkList L)//查找用户
 						continue;
 				}
 				if (lin == 2 && count == 0)
-					break;
+					break;*/
 			}
 			break;
 		}
 		case 3:
 		{
+			p = L->next;
 			cout << "输入要查找的性别：";
 			cin >> sex;
 			cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
@@ -397,6 +580,7 @@ int SearchUser(LinkList L)//查找用户
 		}
 		case 4:
 		{
+			p = L->next;
 			cout << "输入要查找的年龄：";
 			cin >> age;
 			cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";

@@ -30,6 +30,7 @@ void Menu(LinkList& L)
 				break;
 
 			case 0:
+				cout << "感谢使用本程序！" << endl;
 				break;
 
 			default:
@@ -39,6 +40,7 @@ void Menu(LinkList& L)
 		}
 		system("pause");
 		system("cls");
+		break;
 	}
 	
 }
