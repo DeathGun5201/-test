@@ -85,6 +85,7 @@ int ReviseUser(LinkList L)//修改用户
 	while (1)
 	{
 		cout << "1.用户号修改 2.昵称修改 3.性别修改 4.年龄修改 5.退出"<<"\n";
+		cout << "请选择：";
 		cin >> lin;
 		switch (lin)
 		{
@@ -112,30 +113,32 @@ int ReviseUser(LinkList L)//修改用户
 					continue;
 				break;
 			}
-			case 2:
+			case 2://只写了查找还没写修改有点问题
 			{
 				while (1)
 				{
-					cout << "输入要查找的昵称：";
-					cin >> clin;
-					cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
-					while (p && p->data.name == clin)
+					while (1)
 					{
-						cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
-						if (cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n")
-							count++;
+						cout << "请输入要修改昵称的用户的用户号：";
+						cin >> clin;
+						//添加用户号查错的
+					}
+					while (p && p->data.id != clin)
+					{
 						p = p->next;
 					}
-					if (count == 0)
+					cout << "1.是 2.否";
+					cout << "请选择是否修改：";
+					cin >> lin;
+					if (lin == 1)
 					{
-						cout << "1.重新输入 2.退出";
-						cout << "没有该用户用户，请选择重新输入或退出：";
-						cin >> lin;
-						if (lin == 1)
-							continue;
+						cout << "请输入修改的昵称：";
+						cin >> clin;
+						p->data.name = clin;
 					}
-					if (lin == 2 && count == 0)
-						break;
+					else
+						continue;
+					break;
 				}
 				
 				break;
@@ -191,6 +194,7 @@ int ReviseUser(LinkList L)//修改用户
 				break;
 			}
 			case 5:
+			{
 				cout << "1.确认 2.返回" << "\n";
 				cout << "确认退出吗？\n";
 				cout << "请选择";
@@ -198,6 +202,7 @@ int ReviseUser(LinkList L)//修改用户
 					return 0;
 				else
 					continue;
+			}
 		}
 	}
 }
@@ -209,5 +214,100 @@ void ShowUser(LinkList L)//显示用户信息
 	while (p)
 	{
 		cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age<<"\n";
+	}
+}
+
+int SearchUser(LinkList L)//查找用户
+{
+	LinkList p = L->next;
+	int lin,count=0,age;
+	string clin;
+	char sex;
+	while (1)
+	{
+		cout << "1.用户号查找 2.昵称查找 3.性别查找 4.年龄查找 5.退出" << "\n";
+		cout << "请选择：";
+		cin >> lin;
+		switch (lin)
+		{
+			case 1:
+			{
+				while (1)
+				{
+					cout << "请输入要查找的用户号：";
+					cin >> clin;
+					//添加用户号查错的
+				}
+				while (p && p->data.id != clin)
+				{
+					p = p->next;
+				}
+				cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+				cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+				break;
+			}
+			case 2:
+			{
+				while (1)
+				{
+					cout << "输入要查找的昵称：";
+					cin >> clin;
+					cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+					while (p)
+					{
+						if (p->data.name == clin)
+							cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+						if (cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n")
+							count++;
+						p = p->next;
+					}
+					if (count == 0)
+					{
+						cout << "1.重新输入 2.退出";
+						cout << "没有该用户用户，请选择重新输入或退出：";
+						cin >> lin;
+						if (lin == 1)
+							continue;
+					}
+					if (lin == 2 && count == 0)
+						break;
+				}
+				break;
+			}
+			case 3:
+			{
+				cout << "输入要查找的性别：";
+				cin >> sex;
+				cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+				while (p)
+				{
+					if(p->data.sex==sex)
+						cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+				}
+				break;
+			}
+			case 4:
+			{
+				cout << "输入要查找的年龄：";
+				cin >> age;
+				cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
+				while (p)
+				{
+					if (p->data.sex == sex)
+						cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+				}
+				break;
+			}
+			case 5:
+			{
+				cout << "1.确认 2.返回" << "\n";
+				cout << "确认退出吗？\n";
+				cout << "请选择";
+				if (lin == 1)
+					return 0;
+				else
+					continue;
+			}
+		}
 	}
 }

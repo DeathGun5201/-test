@@ -21,12 +21,15 @@ void Menu(LinkList& L)
 				DeleteUser(L);
 				break;
 			case 3:
+				SearchUser(L);
 				break;
 
 			case 4:
+				ReviseUser(L);
 				break;
 
 			case 5:
+				ShowUser(L);
 				break;
 
 			case 0:
