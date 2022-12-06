@@ -1,13 +1,9 @@
-#include"LinkList.h"
 #include<iostream>
 #include<iomanip>
 #include<string.h>
 #include"UserMng.h"
-#include <iomanip>
-#define OVERFLOW -2
-#define OK 1
-#define ERROR -1
-using namespace std;
+#include"LinkList.h"
+
 
 void AddUser(LinkList &L)
 {
@@ -466,14 +462,20 @@ int ReviseUser(LinkList L)//修改用户
 		}
 	}
 }
+
 void ShowUser(LinkList L)//显示用户信息
 {
 	LinkList p = L->next;
 	cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << "\n";
 	while (p)
 	{
-		cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+		cout << std::left << setw(16) << p->data.id << std::left << setw(16) << p->data.name << std::left << setw(16) << p->data.sex << std::left << setw(16) << p->data.age << "\n";
 		p = p->next;
+	}
+	if (p == NULL)
+	{
+		cout << "请添加用户或从文件载入";
+		system("pause");
 	}
 }
 

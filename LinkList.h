@@ -15,3 +15,7 @@ typedef struct LNode
 
 
 Status InitList(LinkList& L);//初始化链表，并且判断是否初始化成功
+
+#define OVERFLOW -2
+#define OK 1
+#define ERROR -1

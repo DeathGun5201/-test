@@ -8,4 +8,5 @@ struct User
 	string name;//定义昵称
 	char sex;//定义性别
 	int age;//定义年龄
+	int sport[7] = { 0 };//各天运动数据
 };
