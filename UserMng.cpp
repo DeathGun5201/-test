@@ -1,6 +1,6 @@
 #include"LinkList.h"
 #include<iostream>
-using namespace std;
+#include<iomanip>
 #include<string.h>
 #include"UserMng.h"
 #include <iomanip>
