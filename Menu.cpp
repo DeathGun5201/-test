@@ -20,13 +20,13 @@ void Menu(LinkList& L)
 			case 2:
 				DeleteUser(L);
 				break;
-			case 3:
+			case 3:SearchUser(L);
 				break;
 
-			case 4:
+			case 4:ReviseUser(L);
 				break;
 
-			case 5:
+			case 5:ShowUser(L);
 				break;
 
 			case 0:

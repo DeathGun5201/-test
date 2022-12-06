@@ -4,7 +4,8 @@ using namespace std;
 #include"LinkList.h"
 int main()
 {
-	LinkList L=NULL;
+	LinkList L;
+	InitList( L);//初始化链表，并且判断是否初始化成功
 	Menu(L);
 	return 0;
 }

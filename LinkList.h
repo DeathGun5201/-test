@@ -4,6 +4,7 @@
 #include<iostream>
 using namespace std;//c++头文件声明，使得能够使用string来进行字符串变量的定义
 #include<string>//这里不用.h，写上.h也没事
+#include<stdio.h>
 typedef User ElemType;
 typedef int Status;
 typedef struct LNode
@@ -12,3 +13,5 @@ typedef struct LNode
 	struct LNode* next;//下一个元素的地址
 }LNode,*LinkList;
 
+
+Status InitList(LinkList& L);//初始化链表，并且判断是否初始化成功
