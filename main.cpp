@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
 	LinkList L;
-	InitList( L);//初始化链表，并且判断是否初始化成功
-	Menu(L);
+	InitList(L);//初始化链表，并且判断是否初始化成功
+	MainMenu(L);
 	return 0;
 }

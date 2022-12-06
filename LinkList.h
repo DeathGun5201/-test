@@ -13,5 +13,16 @@ typedef struct LNode
 	struct LNode* next;//下一个元素的地址
 }LNode,*LinkList;
 
+typedef struct//
+{
+	int* base;
+	int head;
+	int rear;
+}SqQueue;
+
 
 Status InitList(LinkList& L);//初始化链表，并且判断是否初始化成功
+
+#define OVERFLOW -2
+#define OK 1
+#define ERROR -1
