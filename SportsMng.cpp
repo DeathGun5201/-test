@@ -6,9 +6,9 @@
 #include"Queue.h"
 using namespace std;
 
-void addsport(LinkList L)//Ìí¼ÓÔË¶¯ÐÅÏ¢£¬Òª¿ªÊ¼Ìí¼ÓÔË¶¯ÐÅÏ¢µÄ²½ÖèÁË£¬ÊÇ¸ö¶ÓÁÐÃ÷ÌìÐ´
+Status addsport(LinkList L)//Ìí¼ÓÔË¶¯ÐÅÏ¢£¬Òª¿ªÊ¼Ìí¼ÓÔË¶¯ÐÅÏ¢µÄ²½ÖèÁË£¬ÊÇ¸ö¶ÓÁÐÃ÷ÌìÐ´
 {
-	int i,j,a,sport;//i,jÓÃÔÚÍâÃæµÄ´óÑ­»·£¬aÓÃÔÚÀïÃæµÄÐ¡Ñ­»·
+	int i,j,a,sport,jie,lin;//i,jÓÃÔÚÍâÃæµÄ´óÑ­»·£¬aÓÃÔÚÀïÃæµÄÐ¡Ñ­»·
 	string id;
 	LinkList p = L->next;
 	cout << "ÊäÈëÒªÌí¼ÓÓÃ»§µÄ¸öÊý£º";
@@ -41,6 +41,27 @@ void addsport(LinkList L)//Ìí¼ÓÔË¶¯ÐÅÏ¢£¬Òª¿ªÊ¼Ìí¼ÓÔË¶¯ÐÅÏ¢µÄ²½ÖèÁË£¬ÊÇ¸ö¶ÓÁÐÃ÷Ì
 		while (p && p->data.id != id)
 			p = p->next;
 		cout << "ÇëÌí¼Ó¸ÃÓÃ»§µ±ÌìµÄÔË¶¯ÐÅÏ¢£º";
-
+		cin >> sport;
+		jie=EnQueue(p->data.sport, sport);
+		if (jie == -1)
+		{
+			cout << "1.É¾³ý 2.ÍË³ö\n";
+			cout << "Õ»Âú£¬ÇëÑ¡ÔñÉ¾³ýÔªËØ»òÍË³ö£º";
+			cin >> lin;
+			switch (lin)
+			{
+				case 1:
+				{
+					cout << "ÇëÊäÈëÉ¾³ý¸öÊý£º";
+					cin >> lin;
+					for (a = 0; a < lin; a++)
+						DeQueue(p->data.sport);
+					break;
+				}
+				case 2:
+					return 0;
+			}
+		}	
 	}
+	return 0;
 }

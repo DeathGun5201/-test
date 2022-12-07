@@ -3,6 +3,7 @@
 #include<string.h>
 #include"UserMng.h"
 #include"LinkList.h"
+#include"Queue.h"
 
 
 void AddUser(LinkList &L)
@@ -55,6 +56,7 @@ void AddUser(LinkList &L)
 				else
 					break;
 			}
+			CreatQ(p->data.sport);
 			cout << "请输入第" << i + 1 << "个用户的昵称" << endl;
 			cin >> p->data.name;
 			cout << "请输入第" << i + 1 << "个用户的性别" << endl;
