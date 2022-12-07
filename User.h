@@ -7,7 +7,9 @@ typedef struct//队列定义
 	int* base;
 	int head;
 	int rear;
+	//int linshi;原本想要解决一直想不出的问题，现在发现没用
 }SqQueue;
+
 
 struct User
 {
@@ -15,5 +17,5 @@ struct User
 	string name;//定义昵称
 	char sex;//定义性别
 	int age;//定义年龄
-	SqQueue sport;
+	SqQueue sport;//这是一个叫做sport的队列
 };

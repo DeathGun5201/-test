@@ -28,15 +28,21 @@ void AddUser(LinkList &L)
 				else
 					break;
 			}
+		//	cout << "到了这里" << endl;测试代码，不用管
+
 			cout << "请输入第" << i + 1 << "个用户的昵称" << endl;
 			cin >> p->data.name;
 			cout << "请输入第" << i + 1 << "个用户的性别" << endl;
 			cin >> p->data.sex;
 			cout << "请输入第" << i + 1 << "个用户的年龄" << endl;
 			cin >> p->data.age;
+			//cout << "到了这里" << endl;
+
 			p->next = L->next;
 			//p = L->next;
 			L->next = p;
+			CreatQ(p->data.sport);
+			system("pause");
 		}
 	}
 	else

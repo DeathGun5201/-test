@@ -4,6 +4,7 @@
 #include"Menu.h"
 #include"SportsMng.h"
 using namespace std;
+#include"SportsMng.h"
 
 int MainMenu(LinkList& L)
 {
@@ -84,7 +85,7 @@ int UserMeun(LinkList& L)//有关用户操作的菜单
 
 int SportMeun(LinkList& L)//有关运动信息操作的菜单
 {
-	int lin;
+	int lin;//关于运动信息管理的这个模块，在我看来操作目前只能是主菜单的1.的操作之后，即初始化用户信息以及队列的操作后，目前还有局限性
 	while (1)
 	{
 		system("cls");
@@ -94,20 +95,23 @@ int SportMeun(LinkList& L)//有关运动信息操作的菜单
 		cin >> lin;
 		switch (lin)
 		{
-			case 1:
-				addsport(L);
+		case 1:
+			addsport(L);
 				break;
-			case 2:
+		case 2:
+			ReviseSport(L);
 				break;
-			case 3:
-				break;
-			case 4:
-				return 0;
-			default:
-				cout << "输入字符有误请重新输入或选择退出\n";
-				system("pause");
-				break;
+		case 3:
+			ShowSport(L);
+			break;
+		case 4:
+			return 0;
+		default:
+			cout << "输入字符有误请重新输入或选择退出\n";
+			system("pause");
+			break;
 		}
+		system("pause");
 		system("cls");
 	}
 	return 0;
