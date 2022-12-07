@@ -6,7 +6,7 @@
 #include"Queue.h"
 using namespace std;
 
-Status addsport(LinkList L)//添加运动信息，要开始添加运动信息的步骤了，是个队列明天写
+Status addsport(LinkList L)//添加运动信息
 {
 	int i,j,a,sport,jie,lin;//i,j用在外面的大循环，a用在里面的小循环
 	string id;

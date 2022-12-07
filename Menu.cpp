@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include <iomanip>
 #include"Menu.h"
+#include"SportsMng.h"
 using namespace std;
 
 int MainMenu(LinkList& L)
@@ -94,6 +95,7 @@ int SportMeun(LinkList& L)//有关运动信息操作的菜单
 		switch (lin)
 		{
 			case 1:
+				addsport(L);
 				break;
 			case 2:
 				break;

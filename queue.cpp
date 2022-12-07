@@ -12,7 +12,6 @@ Status CreatQ(SqQueue& Q)
 		exit(OVERFLOW);
 	}
 	Q.head = Q.rear = 0;
-	Q.base = { 0 };
 	return OK;
 }
 
