@@ -16,6 +16,8 @@ Status CreatQ(SqQueue& Q)
 	return OK;
 }
 
+
+
 Status QueueLength(SqQueue Q)//计算队列长度
 {
 	return (Q.rear - Q.head + 8) % 8;
