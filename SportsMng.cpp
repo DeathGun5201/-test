@@ -8,13 +8,15 @@ using namespace std;
 
 Status addsport(LinkList L)//Ìí¼ÓÔË¶¯ĞÅÏ¢£¬Òª¿ªÊ¼Ìí¼ÓÔË¶¯ĞÅÏ¢µÄ²½ÖèÁË£¬ÊÇ¸ö¶ÓÁĞÃ÷ÌìĞ´
 {
-	int i,j,a,sport,jie,lin;//i,jÓÃÔÚÍâÃæµÄ´óÑ­»·£¬aÓÃÔÚÀïÃæµÄĞ¡Ñ­»·
-	string id;
-	LinkList p = L->next;
+	int i,j;
 	cout << "ÊäÈëÒªÌí¼ÓÓÃ»§µÄ¸öÊı£º";
 	cin >> j;
 	for (i = 0; i < j; i++)
 	{
+		int a, sport1, jie, lin;//i,jÓÃÔÚÍâÃæµÄ´óÑ­»·£¬aÓÃÔÚÀïÃæµÄĞ¡Ñ­»·
+		string id;
+		LinkList p = L->next;//ÎÊÌâÔÙ´Î³öÏÖÔÚÁËÕâÀï£¬µ¼ÖÂÃ¿´ÎÊ¹ÓÃÕâ¸ö¹¦ÄÜÖ»»á¸²¸ÇÔ­À´µÄÔË¶¯Êı¾İ£¬¶ø²»ÊÇ½ÓÈëµ½¶ÓÁĞÀï£¡
+		//ÉÏÃæÈıĞĞÔ­±¾ÔÚforÍâÃæ£¬µ«ÊÇ³öÏÖÁËbug£¬Ö»ÄÜ·ÅÀïÃæ£¬ÕâÑù²ÅÄÜÍ¬Ê±Â¼Èë¶à¸öÓÃ»§µÄÔË¶¯Êı¾İ
 		while (1)
 		{
 			cout << "ÊäÈëµÚ" << i + 1 << "¸öÒªĞŞ¸ÄÔË¶¯ĞÅÏ¢ÓÃ»§µÄÓÃ»§ºÅ£º";
@@ -27,7 +29,7 @@ Status addsport(LinkList L)//Ìí¼ÓÔË¶¯ĞÅÏ¢£¬Òª¿ªÊ¼Ìí¼ÓÔË¶¯ĞÅÏ¢µÄ²½ÖèÁË£¬ÊÇ¸ö¶ÓÁĞÃ
 			}
 			for (a = 0; a < 11; a++)
 			{
-				if (id[0] != '1' || id[a]>57 || id[a]<48)
+				if (id[0] != '1' || id[a] > 57 || id[a] < 48)
 				{
 					cout << "ÊäÈë¸ñÊ½ÓĞÎóÇëÖØĞÂÊäÈë";
 					break;
@@ -41,27 +43,94 @@ Status addsport(LinkList L)//Ìí¼ÓÔË¶¯ĞÅÏ¢£¬Òª¿ªÊ¼Ìí¼ÓÔË¶¯ĞÅÏ¢µÄ²½ÖèÁË£¬ÊÇ¸ö¶ÓÁĞÃ
 		while (p && p->data.id != id)
 			p = p->next;
 		cout << "ÇëÌí¼Ó¸ÃÓÃ»§µ±ÌìµÄÔË¶¯ĞÅÏ¢£º";
-		cin >> sport;
-		jie=EnQueue(p->data.sport, sport);
+		cin >> sport1;
+		jie = EnQueue(p->data.sport, sport1);
 		if (jie == -1)
 		{
 			cout << "1.É¾³ı 2.ÍË³ö\n";
-			cout << "Õ»Âú£¬ÇëÑ¡ÔñÉ¾³ıÔªËØ»òÍË³ö£º";
+			cout << "¶ÓÂú£¬ÇëÑ¡ÔñÉ¾³ıÔªËØ»òÍË³ö£º";
 			cin >> lin;
 			switch (lin)
 			{
-				case 1:
-				{
-					cout << "ÇëÊäÈëÉ¾³ı¸öÊı£º";
-					cin >> lin;
-					for (a = 0; a < lin; a++)
-						DeQueue(p->data.sport);
-					break;
-				}
-				case 2:
-					return 0;
+			case 1:
+			{
+				cout << "ÇëÊäÈëÉ¾³ı¸öÊı£º";
+				cin >> lin;
+				for (a = 0; a < lin; a++)
+					DeQueue(p->data.sport);
+				break;
 			}
-		}	
+			case 2:
+				return 0;
+			}
+		}
 	}
 	return 0;
 }
+
+
+Status ReviseSport(LinkList L)
+{
+	string id;//¾Ö²¿±äÁ¿£¬²»Ó°ÏìÈ«¾Ö±äÁ¿
+	int n;
+	cout << "ÇëÊäÈëÄãÏëÒªĞŞ¸ÄµÄÔË¶¯ĞÅÏ¢¶ÔÓ¦µÄÓÃ»§µÄÊÖ»úºÅ(×¢£ºÖ»ÄÜ¹»ĞŞ¸Äµ±ÌìµÄÔË¶¯Êı¾İ)" << endl;
+	cin >> id;
+	LNode* p=L->next;
+	while (p && p->data.id != id)
+		p = p->next;
+	cout << std::left << setw(16) << "ÓÃ»§ºÅ" << std::left << setw(16) << "êÇ³Æ" << std::left << setw(16) << "ĞÔ±ğ" << std::left << setw(16) << "ÄêÁä" << "\n";
+	cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+	ShowQueue(p->data.sport);
+	cout << "ÇëÊäÈëĞŞ¸ÄºóµÄÔË¶¯Êı¾İ" << endl;
+	cin >> n;
+	ReviseSport2(p->data.sport,n);
+	cout << std::left << setw(16) << "ÓÃ»§ºÅ" << std::left << setw(16) << "êÇ³Æ" << std::left << setw(16) << "ĞÔ±ğ" << std::left << setw(16) << "ÄêÁä" << "\n";
+	cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age << "\n";
+	ShowQueue(p->data.sport);
+	return 0;
+}
+
+Status ReviseSport2(SqQueue& Q,int n)
+{
+	int m;
+	m = QueueLength(Q);
+	Q.base[m - 1] = n;
+	return 0;
+}
+
+Status ShowSport(LinkList L)//ÏÔÊ¾ËùÓĞÓÃ»§ËùÓĞÌìÊıµÄÔË¶¯ĞÅÏ¢
+{
+	LNode* p = L->next;
+	while (p)
+	{
+		cout << std::left << setw(16) << "ÓÃ»§ºÅ" << std::left << setw(16) << "êÇ³Æ" << std::left << setw(16) << "ĞÔ±ğ" << std::left << setw(16) << "ÄêÁä" << std::left << setw(16) << "ÔË¶¯Êı¾İ"<<"\n";
+		cout << std::left << setw(15) << p->data.id << std::left << setw(15) << p->data.name << std::left << setw(15) << p->data.sex << std::left << setw(15) << p->data.age;
+		ShowQueue(p->data.sport);cout << " "<<"\n";
+		
+		p = p->next;
+	}
+	return 0;
+}
+
+Status ShowQueue(SqQueue& Q)
+{
+	int m; int i = 0;
+	if (Q.head == Q.rear)
+	{
+		cout << "¸ÃÓÃ»§Ä¿Ç°»¹ÉĞÎ´ÔË¶¯£¡" << endl;
+	}
+	m=QueueLength(Q);
+	//cout << "´ËÊ±µÄ³¤¶ÈÎª" << m << "  ";//¸ù¾İÕâÀïÎÒÖªµÀÁËÔÙ´Î°´Ìí¼ÓÔË¶¯ĞÅÏ¢Ã»ÓĞÌí¼Ó½øÈ¥ÔË¶¯Êı¾İ£¬Ö»ÊÇ¶ÔÔ­À´µÄÔË¶¯Êı¾İ½øĞĞÁË¸²¸Ç
+	for(i = 0; i < m; i++)
+	{
+		cout << Q.base[i];
+	}
+	/*while (Q.head != Q.rear)
+	{
+
+		cout << Q.base[Q.head];
+		Q.head = (Q.head + 1) % 8;
+	}*/
+	return OK;
+}
+

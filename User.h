@@ -7,6 +7,7 @@ typedef struct//队列定义
 	int* base;
 	int head;
 	int rear;
+	//int linshi;原本想要解决一直想不出的问题，现在发现没用
 }SqQueue;
 
 
