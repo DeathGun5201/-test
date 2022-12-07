@@ -5,6 +5,13 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "实训test", "实训test.vcxproj", "{B78F75C4-A380-48C7-B56E-DC4AE1BA2AEA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{131BA4A2-56A7-45B5-B1FF-28B881A99174}"
+	ProjectSection(SolutionItems) = preProject
+		LocatInfo.txt = LocatInfo.txt
+		RouteInfo.txt = RouteInfo.txt
+		User.txt = User.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

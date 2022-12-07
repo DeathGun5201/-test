@@ -5,6 +5,7 @@
 #include"SportsMng.h"
 using namespace std;
 #include"SportsMng.h"
+#include"DataLoad.h"
 
 int MainMenu(LinkList& L)
 {
@@ -190,9 +191,9 @@ int DataMeun(LinkList& L)//数据操作菜单
 		cin >> lin;
 		switch (lin)
 		{
-			case 1:
+		case 1:ReadFile(L);
 				break;
-			case 2:
+		case 2:WriteFile(L);
 				break;
 			case 3:
 				return 0;
@@ -201,6 +202,7 @@ int DataMeun(LinkList& L)//数据操作菜单
 				system("pause");
 				break;
 		}
+		system("pause");
 		system("cls");
 	}
 	return 0;
