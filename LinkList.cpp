@@ -5,10 +5,6 @@
 //可以把对python类的理解带入到结构体之中
 
 #include"LinkList.h"//包含这个头文件才能实现对应的操作
-#define OVERFLOW -2
-#define OK 1
-#define ERROR -1
-
 
 Status InitList(LinkList& L)//初始化链表，并且判断是否初始化成功
 {

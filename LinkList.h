@@ -13,7 +13,7 @@ typedef struct LNode
 	struct LNode* next;//下一个元素的地址
 }LNode,*LinkList;
 
-typedef struct//
+typedef struct//队列定义
 {
 	int* base;
 	int head;

@@ -3,6 +3,7 @@
 #include<string.h>
 #include"SportsMng.h"
 #include"LinkList.h"
+#include"Queue.h"
 using namespace std;
 
 void addsport(LinkList L)//添加运动信息，要开始添加运动信息的步骤了，是个队列明天写
