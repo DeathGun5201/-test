@@ -14,14 +14,3 @@ Status CreatQ(SqQueue& Q)
 	Q.head = Q.rear = 0;
 	return OK;
 }
-
-Status EnQueue(SqQueue& Q)
-{
-
-}
-
-Status ReviseQueue(SqQueue& Q)//修改当天的运动数据
-{
-	cout << "你确定要修改今天的运动数据吗？" << endl;
-	
-}
