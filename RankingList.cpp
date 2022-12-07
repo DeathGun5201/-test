@@ -56,7 +56,7 @@ Status serlist(LinkList L)//连续运动排行榜
 	while (p)
 	{
 		j = 0;//开头初始化，便于存储用户运动数据
-		day[7] = { 0 };//开头初始化，防止上个用户的数据被用到这个用户身上
+		//day[7] = { 0 };//开头初始化，防止上个用户的数据被用到这个用户身上
 		for (i = L->data.sport.head; i < L->data.sport.rear - 1; (L->data.sport.head + 1) % 8)//将该用户所有运动数据从头读到尾
 		{
 			sport[j] = L->data.sport.base[i];

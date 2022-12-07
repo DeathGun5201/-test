@@ -3,9 +3,10 @@
 #include <iomanip>
 #include"Menu.h"
 #include"SportsMng.h"
-using namespace std;
-#include"SportsMng.h"
 #include"DataLoad.h"
+#include"route.h"
+#include"RankingList.h"
+using namespace std;
 
 int MainMenu(LinkList& L)
 {
@@ -132,10 +133,13 @@ int SportlistMeun(LinkList& L)//有关运动排行操作的菜单
 		switch (lin)
 		{
 			case 1:
+				todaylist(L);
 				break;
 			case 2:
+				serlist(L);
 				break;
 			case 3:
+				weeklist(L);
 				break;
 			case 4:
 				return 0;
@@ -153,6 +157,7 @@ int SportlistMeun(LinkList& L)//有关运动排行操作的菜单
 int RouteMeun(LinkList& L)//路线定制菜单
 {
 	int lin;
+	Graph G;
 	while (1)
 	{
 		system("cls");
@@ -163,6 +168,7 @@ int RouteMeun(LinkList& L)//路线定制菜单
 		switch (lin)
 		{
 			case 1:
+				drawroute(G);
 				break;
 			case 2:
 				break;
