@@ -30,6 +30,7 @@ Status EnQueue(SqQueue &Q, int e)//向队尾插入新元素
 		return ERROR;
 	//if(Q.rear==0)
 		//cout << "到了这里" << endl;
+	//cout << e;
 	Q.base[Q.rear] = e;//经过验证，中断出现在这里,如果冲突，那么只能是Q.base[Q.rear]被占用？？
 	Q.rear = (Q.rear + 1) % 8;
 	return OK;

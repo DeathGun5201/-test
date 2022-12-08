@@ -105,8 +105,7 @@ Status ShowSport(LinkList L)//显示所有用户所有天数的运动信息
 	{
 		cout << std::left << setw(16) << "用户号" << std::left << setw(16) << "昵称" << std::left << setw(16) << "性别" << std::left << setw(16) << "年龄" << std::left << setw(16) << "运动数据"<<"\n";
 		cout << std::left << setw(16) << p->data.id << std::left << setw(16) << p->data.name << std::left << setw(16) << p->data.sex << std::left << setw(16) << p->data.age;
-		ShowQueue(p->data.sport);cout << " "<<"\n";
-		
+		ShowQueue(p->data.sport);cout << "   "<<"\n";
 		p = p->next;
 	}
 	return 0;
@@ -124,6 +123,7 @@ Status ShowQueue(SqQueue& Q)
 	for(i = 0; i < m; i++)
 	{
 		cout << Q.base[i];
+		cout << "  ";
 	}
 	/*while (Q.head != Q.rear)
 	{

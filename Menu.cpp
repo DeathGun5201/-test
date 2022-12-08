@@ -201,12 +201,12 @@ int DataMeun(LinkList& L)//数据操作菜单
 				break;
 		case 2:WriteFile(L);
 				break;
-			case 3:
-				return 0;
-			default:
-				cout << "输入字符有误请重新输入或选择退出\n";
-				system("pause");
-				break;
+		case 3:
+			return 0;
+		default:
+			cout << "输入字符有误请重新输入或选择退出\n";
+			system("pause");
+			break;
 		}
 		system("pause");
 		system("cls");
