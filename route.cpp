@@ -112,7 +112,7 @@ Status chooseroute(Graph &G)
         printf("该点到各顶点的最短路径长度为:\n");
         for (int i = 1; i < G.locationnum; i++)
         {
-            cout << G.location[n] << "-" << G.location[i] << ":" <<fixed << setprecision(2)<< D[i-7] << endl;
+            cout << G.location[n] << "-" << G.location[i] << ":" <<fixed << setprecision(2)<< D[i] << endl;
         }
         system("pause");
         /*if (n == 1)
