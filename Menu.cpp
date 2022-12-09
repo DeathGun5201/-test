@@ -170,7 +170,7 @@ int RouteMeun(LinkList& L)//路线定制菜单
 			case 1:
 				drawroute(G);
 				break;
-			case 2:
+			case 2:chooseroute(G);
 				break;
 			case 3:
 				return 0;
@@ -192,7 +192,7 @@ int DataMeun(LinkList& L)//数据操作菜单
 	{
 		system("cls");
 		cout << "数据文件操作\n";
-		cout << "1.数据加载 2.数据保存 3.退出\n";
+		cout << "1.数据加载 2.数据保存 3.退出\n";//这里目前都只能对User.txt进行保存和读取，还没有写对另外两个文本的读取和保存
 		cout << "请选择功能：";
 		cin >> lin;
 		switch (lin)
