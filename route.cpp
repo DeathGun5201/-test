@@ -4,7 +4,6 @@
 #include<iomanip>
 #define INFINITY 65535
 #define V 20
-using namespace std;
 
 //这步操作只是读取两个文本文件之中的信息，没别的了
 Status drawroute(Graph &G)//location顶点表，distance邻接矩阵，所有距离最大是5.2
@@ -25,6 +24,14 @@ Status drawroute(Graph &G)//location顶点表，distance邻接矩阵，所有距离最大是5.2
         infile >> G.location[G.locationnum];//将文件的顶点载入顶点表
         G.locationnum++;//循环计数，顺便统计节点数
     }
+    //对权值的初始化
+    for (int i = 0; i < G.locationnum; i++)
+    {
+        for (int j = 0; j < G.locationnum; j++)
+        {
+            G.distance[i][j] = INFINITY;
+        }
+    }
     infile.close();
 
     ifstream infile1("RouteInfo.txt", ios::in); 	//以读的方式打开文件，如果文件不存在就打不开
@@ -32,14 +39,6 @@ Status drawroute(Graph &G)//location顶点表，distance邻接矩阵，所有距离最大是5.2
     {
         cerr << "open error!" << endl;
         exit(1);
-    }
-    //对权值的初始化
-    for (int i = 0; i < G.locationnum; i++) 
-    {
-        for (int j = 0; j < G.locationnum; j++)
-        {
-            G.distance[i][j] = INFINITY;
-        }
     }
 
     while (!infile1.eof())
@@ -62,7 +61,6 @@ Status drawroute(Graph &G)//location顶点表，distance邻接矩阵，所有距离最大是5.2
             }
         }
         G.distance[lloca1][lloca2] = G.distance[lloca2][lloca1] = dis;//存入距离
-        //cout << G.distance[lloca1][lloca2] << endl;检验是否存入了距离的信息
         G.arcnum++;
     }
     infile.close();
@@ -75,14 +73,12 @@ Status drawroute(Graph &G)//location顶点表，distance邻接矩阵，所有距离最大是5.2
 
 Status chooseroute(Graph &G)
 {
-    int n,m;
-    cout << left << setw(16) << "0.华航东校区" << setw(16) << "1.华航西校区" << setw(16) << "2.沃尔玛超市" << endl;
-    cout << left << setw(16) << "3.廊坊六中" << setw(16) << "4.廊坊市福利院" << setw(16) << "5.新奥燃气" << endl;
-    cout << left << setw(16) << "6.会展中心" << setw(16) << "7.开发区高速口" << setw(16) << "8.东方大学城" << endl;
-    cout << left << setw(16) << "9.金丰农科园" << setw(16) << "10.廊坊市体育馆" << setw(16) << "11.文化艺术中心" << endl;
-    cout << left << setw(16) << "12.移动大厦" << setw(16) << "13.人民公园东门" << setw(16) << "14.自然公园" << endl;
-    cout << left << setw(16) << "15.万达广场" << setw(16) << "16.万向城" << setw(16) << "17.廊坊师范学院" << endl;
-    cout << left << setw(16) << "18.廊坊高铁站" << setw(16) << "19.浙商广场" << endl;
+    int n;
+    cout << left << setw(16) << "0.华航东校区" << setw(16) << "1.华航西校区" << setw(16) << "2.沃尔玛超市" << setw(16) << "3.廊坊六中" << endl;
+    cout << left << setw(16) << "4.廊坊市福利院" << setw(16) << "5.新奥燃气" << setw(16) << "6.会展中心" << setw(16) << "7.开发区高速口" << endl;
+    cout << left << setw(16) << "8.东方大学城" << setw(16) << "9.金丰农科园" << setw(16) << "10.廊坊市体育馆" << setw(16) << "11.文化艺术中心" << endl;
+    cout << left << setw(16) << "12.移动大厦" << setw(16) << "13.人民公园东门" << setw(16) << "14.自然公园" << setw(16) << "15.万达广场" << endl;
+    cout << left << setw(16) << "16.万向城" << setw(16) << "17.廊坊师范学院" << setw(16) << "18.廊坊高铁站" << setw(16) << "19.浙商广场" << endl;
     cout << "请选择运动起点序号:";
     cin >> n;
     if (n < 0 || n>19)
@@ -90,96 +86,37 @@ Status chooseroute(Graph &G)
     
     else
     {
+
         int P[V] = { 0 };   // 记录顶点 0 到各个顶点的最短的路径
-        double D[V] = { 0 };   // 记录顶点 0 到各个顶点的总权值,,,,,,一直不明白为什么copy也能出错，才发现应该改成double型数据
-        m = n - 1;
-        Dijkstra_minTree(G,n, P, D);
+        double D[V] = { 0 };   // 记录顶点 0 到各个顶点的总权值
+
+        Dijkstra_minTree(G, n, P, D);
+
         printf("最短路径为：\n");
-        for (int i = 1; i < G.locationnum; i++) 
-        {
+        for (int i = 1; i < G.locationnum; i++) {
             printf("%d - %d的最短路径中的顶点有：", i, n);
             printf(" %d-", i);
             int j = i;
             //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
-            while (P[j] != 0)
-            {
+            while (P[j] != 0) {
                 printf("%d-", P[j]);
                 j = P[j];
             }
-            cout <<n<< endl; 
-            //printf("0\n");
+            printf("%d\n", n);
         }
-        printf("该点到各顶点的最短路径长度为:\n");
-        for (int i = 1; i < G.locationnum; i++)
-        {
-            cout << G.location[n] << "-" << G.location[i] << ":" <<fixed << setprecision(2)<< D[i] << endl;
+        printf("源点到各顶点的最短路径长度为:\n");
+        for (int i = 1; i < G.locationnum; i++) {
+            cout << G.location[n] << "-" << G.location[i] << ":" << D[i] << endl;
+            //printf("%s - %s : %s \n", G.location[n], G.location[i], D[i]);
         }
         system("pause");
-        /*if (n == 1)
-        {
-            Dijkstra_minTree(G, 0, P, D);
-            printf("最短路径为：\n");
-            for (int i = 1; i < G.locationnum; i++)
-            {
-                    printf("%d - %d的最短路径中的顶点有：", i, 0);
-                    printf(" %d-", i);
-                    int j = i;
-                    //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
-                    while (P[j] != 0)
-                    {
-                        printf("%d-", P[j]);
-                        j = P[j];
-                    }
-                    cout << n << endl;
-                    //printf("0\n")
-            }
-            printf("该点到各顶点的最短路径长度为:\n");
-            for (int i = 1; i < G.locationnum; i++)
-            {
-                cout << G.location[0] << "-" << G.location[i] << ":" << D[i] << endl;
-                //printf("%d - %d : %d \n", G.location[0], G.location[i], D[i]);
-            }
-            system("pause");
-        }
-        else
-        {
-            Dijkstra_minTree(G, n - 1, P, D);
-            printf("最短路径为：\n");
-            for (int i = 1; i < G.locationnum; i++)
-            {
-                if (i != n)
-                {
-                    printf("%d - %d的最短路径中的顶点有：", i, n);
-                    printf(" %d-", i);
-                    int j = i;
-                    //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
-                    while (P[j] != 0)
-                    {
-                        printf("%d-", P[j]);
-                        j = P[j];
-                    }
-                    cout << n << endl;
-                    //printf("0\n");
-                }
-            }
-            printf("该点到各顶点的最短路径长度为:\n");
-            for (int i = 1; i < G.locationnum; i++)
-            {
-                if (i != n - 1)
-                    cout << G.location[n - 1] << "-" << G.location[i] << ":" << D[i] << endl;
-                //printf("%d - %d : %d \n", G.location[0], G.location[i], D[i]);
-            }
-            system("pause");
-        }*/
     }
     return 0;
 }
 
-
-
 void Dijkstra_minTree(Graph G, int v0, int p[V], double D[V])
 {
-    double final[V];//为各个顶点配置一个标记值，用于确认该顶点是否已经找到最短路径
+    int final[V];//为各个顶点配置一个标记值，用于确认该顶点是否已经找到最短路径
     //对各数组进行初始化
     for (int v = 0; v < G.locationnum; v++) {
         final[v] = 0;
@@ -191,13 +128,16 @@ void Dijkstra_minTree(Graph G, int v0, int p[V], double D[V])
     final[v0] = 1;
     int k = 0;
     for (int i = 0; i < G.locationnum; i++) {
-        int min = INFINITY;
+        double min = 50;
         //选择到各顶点权值最小的顶点，即为本次能确定最短路径的顶点
         for (int w = 0; w < G.locationnum; w++) {
             if (!final[w]) {
                 if (D[w] < min) {
                     k = w;
                     min = D[w];
+                    //test
+                    cout << min<<"    ";
+                    //test
                 }
             }
         }
@@ -216,6 +156,84 @@ void Dijkstra_minTree(Graph G, int v0, int p[V], double D[V])
 }
 
 
+/*
+printf("最短路径为：\n");
+for (int i = 1; i < G.locationnum; i++)
+{
+    printf("%d - %d的最短路径中的顶点有：", i, n);
+    printf(" %d-", i);
+    int j = i;
+    //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
+    while (P[j] != 0)
+    {
+        printf("%d-", P[j]);
+        j = P[j];
+    }
+    cout << n << endl;
+    //printf("0\n");
+}
+printf("该点到各顶点的最短路径长度为:\n");
+for (int i = 1; i < G.locationnum; i++)
+{
+    cout << G.location[n] << "-" << G.location[i] << ":" << fixed << setprecision(2) << D[i] << endl;
+}
+system("pause");
+/*if (n == 1)
+{
+    Dijkstra_minTree(G, 0, P, D);
+    printf("最短路径为：\n");
+    for (int i = 1; i < G.locationnum; i++)
+    {
+            printf("%d - %d的最短路径中的顶点有：", i, 0);
+            printf(" %d-", i);
+            int j = i;
+            //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
+            while (P[j] != 0)
+            {
+                printf("%d-", P[j]);
+                j = P[j];
+            }
+            cout << n << endl;
+            //printf("0\n")
+    }
+    printf("该点到各顶点的最短路径长度为:\n");
+    for (int i = 1; i < G.locationnum; i++)
+    {
+        cout << G.location[0] << "-" << G.location[i] << ":" << D[i] << endl;
+        //printf("%d - %d : %d \n", G.location[0], G.location[i], D[i]);
+    }
+    system("pause");
+}
+else
+{
+    Dijkstra_minTree(G, n - 1, P, D);
+    printf("最短路径为：\n");
+    for (int i = 1; i < G.locationnum; i++)
+    {
+        if (i != n)
+        {
+            printf("%d - %d的最短路径中的顶点有：", i, n);
+            printf(" %d-", i);
+            int j = i;
+            //由于每一段最短路径上都记录着经过的顶点，所以采用嵌套的方式输出即可得到各个最短路径上的所有顶点
+            while (P[j] != 0)
+            {
+                printf("%d-", P[j]);
+                j = P[j];
+            }
+            cout << n << endl;
+            //printf("0\n");
+        }
+    }
+    printf("该点到各顶点的最短路径长度为:\n");
+    for (int i = 1; i < G.locationnum; i++)
+    {
+        if (i != n - 1)
+            cout << G.location[n - 1] << "-" << G.location[i] << ":" << D[i] << endl;
+        //printf("%d - %d : %d \n", G.location[0], G.location[i], D[i]);
+    }
+    system("pause");
+}*/
 
 
 

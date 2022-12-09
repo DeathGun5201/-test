@@ -1,7 +1,5 @@
 #pragma once//作用是防止头文件重复编译
 //这是用户信息管理的头文件
-
-
 #include"LinkList.h"
 
 void AddUser(LinkList &L);//添加用户

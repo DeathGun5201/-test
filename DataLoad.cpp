@@ -8,12 +8,11 @@ using namespace std;
 #include<sstream>
 #include<iomanip>
 
-
-
 int ReadFile(LinkList& L)
 {
     string a[8];//getline参数是字符串，所以后面报的错是没有找到参数
     int i = 0; int num = 0; int j = 0;
+    int count = 0;
     int b[7];
     int m,n;
     string str;//infile被称为文件指针
@@ -44,7 +43,6 @@ int ReadFile(LinkList& L)
             EnQueue(p->data.sport, b[i]);
             num++;
         }*/
-        cout << num;
         /*for (i = 0; i < num; i++)
         {
             
@@ -64,9 +62,11 @@ int ReadFile(LinkList& L)
         }*/
         //cout << b[i];
         i++;
+        count++;
     }
+    if (count != 0)
+        cout << "载入文件成功\n";
     infile.close();
-    
     /*else
     {
         cout << "原来的文本文件中的信息已经全部导入，请不要重复操作！" << endl;

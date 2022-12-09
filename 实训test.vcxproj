@@ -132,7 +132,7 @@
     <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="queue.cpp" />
+    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="RankingList.cpp" />
     <ClCompile Include="route.cpp" />
     <ClCompile Include="SportsMng.cpp" />

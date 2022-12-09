@@ -1,3 +1,4 @@
+
 #pragma once
 #include"LinkList.h"
 #define V 20

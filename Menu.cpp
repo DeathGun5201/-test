@@ -99,10 +99,10 @@ int SportMeun(LinkList& L)//有关运动信息操作的菜单
 		{
 		case 1:
 			addsport(L);
-				break;
+			break;
 		case 2:
 			ReviseSport(L);
-				break;
+			break;
 		case 3:
 			ShowSport(L);
 			break;
@@ -110,7 +110,6 @@ int SportMeun(LinkList& L)//有关运动信息操作的菜单
 			return 0;
 		default:
 			cout << "输入字符有误请重新输入或选择退出\n";
-			system("pause");
 			break;
 		}
 		system("pause");
@@ -170,7 +169,8 @@ int RouteMeun(LinkList& L)//路线定制菜单
 			case 1:
 				drawroute(G);
 				break;
-			case 2:chooseroute(G);
+			case 2:
+				chooseroute(G);
 				break;
 			case 3:
 				return 0;
@@ -197,10 +197,12 @@ int DataMeun(LinkList& L)//数据操作菜单
 		cin >> lin;
 		switch (lin)
 		{
-		case 1:ReadFile(L);
-				break;
-		case 2:WriteFile(L);
-				break;
+		case 1:
+			ReadFile(L);
+			break;
+		case 2:
+			WriteFile(L);
+			break;
 		case 3:
 			return 0;
 		default:
@@ -213,54 +215,3 @@ int DataMeun(LinkList& L)//数据操作菜单
 	}
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-/*while (1)
-	{
-		int n;
-		cout << "用户信息管理系统" << endl;
-		cout << "1.添加用户  2.删除用户  3.查询用户  4.修改用户  5.显示用户  0.退出" << endl;
-		cout << "请输入你的选项" << endl;
-		cin >> n;
-		while (1)
-		{
-			switch (n)
-			{
-			case 1:
-				AddUser(L);
-				break;
-			case 2:
-				DeleteUser(L);
-				break;
-			case 3:SearchUser(L);
-				break;
-
-			case 4:ReviseUser(L);
-				break;
-
-			case 5:ShowUser(L);
-				break;
-
-			case 0:
-				cout << "感谢使用本程序！" << endl;
-				break;
-
-			default:
-				break;
-			}
-			break;
-		}
-		system("pause");
-		system("cls");
-		break;
-	}
-	
-}
-	}*/
