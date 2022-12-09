@@ -1,3 +1,4 @@
+
 #pragma once
 #include"LinkList.h"
 #define V 20
@@ -11,3 +12,4 @@ Status drawroute(Graph &G);//绘制运动路线             //补充：这里需要&,因为在读
 Status chooseroute(Graph &G);//选择运动路线
 
 void Dijkstra_minTree(Graph G, int v0, int p[V], double D[V]);
+
