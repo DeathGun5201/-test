@@ -88,7 +88,7 @@ Status chooseroute(Graph &G)
     {
 
         int P[V] = { 0 };   // 记录顶点 0 到各个顶点的最短的路径
-        double D[V] = { 0 };   // 记录顶点 0 到各个顶点的总权值
+        double D[V] = { 0 };   // 记录顶点 0 到各个顶点的总权值,,,,,,一直不明白为什么copy也能出错，才发现应该改成double型数据
 
         Dijkstra_minTree(G, n, P, D);
 
@@ -110,9 +110,12 @@ Status chooseroute(Graph &G)
             //printf("%s - %s : %s \n", G.location[n], G.location[i], D[i]);
         }
         system("pause");
+
     }
     return 0;
 }
+
+
 
 void Dijkstra_minTree(Graph G, int v0, int p[V], double D[V])
 {
