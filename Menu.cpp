@@ -36,8 +36,12 @@ int MainMenu(LinkList& L)
 				break;
 			case 6:
 				return 0;
+				/*
+			case 0:
+				cout << "你输入的为字符或者数据超过了int型数据的范围或者其它原因，请重新输入或者退出" << endl;
+				break;*/
 			default:
-				cout << "输入字符有误请重新输入或选择退出\n";
+				cout << "输入数据有误请重新输入或选择退出\n";
 				system("pause");
 				break;
 		}
@@ -61,13 +65,37 @@ int UserMeun(LinkList& L)//有关用户操作的菜单
 				AddUser(L);
 				break;
 			case 2:
-				DeleteUser(L);
+				if (L->next == NULL)
+				{
+					cout << "请您先添加用户或从文件载入" << endl;
+					system("pause");
+				}
+				else
+				{
+					DeleteUser(L);
+				}
 				break;
 			case 3:
-				SearchUser(L);
+				if (L->next == NULL)
+				{
+					cout << "请您先添加用户或从文件载入" << endl;
+					system("pause");
+				}
+				else
+				{
+					SearchUser(L);
+				}
 				break;
 			case 4:
-				ReviseUser(L);
+				if (L->next == NULL)
+				{
+					cout << "请您先添加用户或从文件载入" << endl;
+					system("pause");
+				}
+				else
+				{
+					ReviseUser(L);
+				}
 				break;
 			case 5:
 				ShowUser(L);
@@ -75,7 +103,7 @@ int UserMeun(LinkList& L)//有关用户操作的菜单
 			case 6:
 				return 0;
 			default:
-				cout << "输入字符有误请重新输入或选择退出\n";
+				cout << "输入数据有误请重新输入或选择退出\n";
 				system("pause");
 				break;
 		}
@@ -101,15 +129,29 @@ int SportMeun(LinkList& L)//有关运动信息操作的菜单
 			addsport(L);
 			break;
 		case 2:
-			ReviseSport(L);
+			if (L->next == NULL)
+			{
+				cout << "请您先添加用户或从文件载入" << endl;
+			}
+			else
+			{
+				ReviseSport(L);
+			}
 			break;
 		case 3:
-			ShowSport(L);
+			if (L->next == NULL)
+			{
+				cout << "请您先添加用户或从文件载入" << endl;
+			}
+			else
+			{
+				ShowSport(L);
+			}
 			break;
 		case 4:
 			return 0;
 		default:
-			cout << "输入字符有误请重新输入或选择退出\n";
+			cout << "输入数据有误请重新输入或选择退出\n";
 			break;
 		}
 		system("pause");
@@ -143,7 +185,7 @@ int SportlistMeun(LinkList& L)//有关运动排行操作的菜单
 			case 4:
 				return 0;
 			default:
-				cout << "输入字符有误请重新输入或选择退出\n";
+				cout << "输入数据有误请重新输入或选择退出\n";
 				system("pause");
 				break;
 		}
@@ -175,7 +217,7 @@ int RouteMeun(LinkList& L)//路线定制菜单
 			case 3:
 				return 0;
 			default:
-				cout << "输入字符有误请重新输入或选择退出\n";
+				cout << "输入数据有误请重新输入或选择退出\n";
 				system("pause");
 				break;
 		}
@@ -206,8 +248,7 @@ int DataMeun(LinkList& L)//数据操作菜单
 		case 3:
 			return 0;
 		default:
-			cout << "输入字符有误请重新输入或选择退出\n";
-			system("pause");
+			cout << "输入数据有误请重新输入或选择退出\n";
 			break;
 		}
 		system("pause");

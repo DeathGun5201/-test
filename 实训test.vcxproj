@@ -136,7 +136,6 @@
     <ClCompile Include="RankingList.cpp" />
     <ClCompile Include="route.cpp" />
     <ClCompile Include="SportsMng.cpp" />
-    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="UserMng.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +145,6 @@
     <ClInclude Include="RankingList.h" />
     <ClInclude Include="route.h" />
     <ClInclude Include="SportsMng.h" />
-    <ClInclude Include="Stack.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserMng.h" />
   </ItemGroup>

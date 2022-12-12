@@ -102,9 +102,10 @@ Status ShowSport(LinkList L)//显示所有用户所有天数的运动信息
 	LNode* p = L->next;
 	while (p)
 	{
-		cout << std::left << setw(16) << "用户号" << setw(16) << "昵称" << setw(16) << "性别" << setw(16) << "年龄" << "运动数据\n";
+		cout << std::left << setw(16) << "用户号" << setw(16) << "昵称" << setw(16) << "性别" << setw(16) << "年龄" << "运动数据" <<"\t\t\t\t"<<"总步数" << "\t\t\t\t" << "平均步数"<< endl;;
 		cout << std::left << setw(16) << p->data.id << setw(16) << p->data.name << setw(16) << p->data.sex << setw(16) << p->data.age;
 		ShowQueue(p->data.sport);
+		AverageQueue(p->data.sport);
 		cout << endl;
 		p = p->next;
 	}

@@ -72,3 +72,18 @@ Status ChangeQueueRear(SqQueue& Q, int steps)//改动队尾元素
 	}
 	return 0;
 }
+
+Status AverageQueue(SqQueue Q)
+{
+	int n,sum=0;
+	n = QueueLength(Q);
+	double ave;
+	for (int i = 0; i < n; i++)
+	{
+		sum = sum + Q.base[i];
+	}
+	cout << "\t" << sum;
+	ave = (double)sum / 7;
+	cout << "\t\t\t\t"<<ave;
+	return 0;
+}

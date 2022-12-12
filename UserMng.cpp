@@ -442,11 +442,12 @@ int ReviseUser(LinkList L)//修改用户
 
 void ShowUser(LinkList L)//显示用户信息
 {
+	
 	LinkList p = L->next;
 	if (p == NULL)
 	{
-		cout << "请添加用户或从文件载入";
-		system("pause");
+		cout << "请您先添加用户或从文件载入" << endl;;
+		//system("pause");
 	}
 	else
 	{

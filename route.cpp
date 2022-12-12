@@ -183,7 +183,7 @@ void Dijkstra_minTree(Graph G, int v0, int p[V], double D[V])
                 p[w] = k;//记录各个最短路径上存在的顶点
 
                 //test
-                cout << p[w] << "  ";
+                //cout << p[w] << "  ";
                 //test
             }
         }
