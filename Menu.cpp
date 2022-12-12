@@ -174,13 +174,37 @@ int SportlistMeun(LinkList& L)//有关运动排行操作的菜单
 		switch (lin)
 		{
 			case 1:
-				todaylist(L);
+				if (L->next == NULL)
+				{
+					cout << "请您先添加用户或从文件载入" << endl;
+					system("pause");
+				}
+				else
+				{
+					todaylist(L);
+				}
 				break;
 			case 2:
-				serlist(L);
+				if (L->next == NULL)
+				{
+					cout << "请您先添加用户或从文件载入" << endl;
+					system("pause");
+				}
+				else
+				{
+					serlist(L);
+				}
 				break;
 			case 3:
-				weeklist(L);
+				if (L->next == NULL)
+				{
+					cout << "请您先添加用户或从文件载入" << endl;
+					system("pause");
+				}
+				else
+				{
+					weeklist(L);
+				}
 				break;
 			case 4:
 				return 0;

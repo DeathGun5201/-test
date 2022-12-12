@@ -4,6 +4,7 @@
 #include"UserMng.h"
 #include"LinkList.h"
 #include"Queue.h"
+#include<stdlib.h>
 
 void AddUser(LinkList &L)
 {
@@ -36,6 +37,7 @@ void AddUser(LinkList &L)
 			p->next = L->next;
 			L->next = p;
 			CreatQ(p->data.sport);
+			cout << "添加成功！" << endl;
 			system("pause");
 		}
 	}
@@ -57,14 +59,38 @@ void AddUser(LinkList &L)
 					break;
 			}
 			CreatQ(p->data.sport);
-			cout << "请输入第" << i + 1 << "个用户的昵称" << endl;
+			cout << "请输入第" << i + 1 << "个用户的昵称" << endl;//这里还得判断昵称的位数
 			cin >> p->data.name;
-			cout << "请输入第" << i + 1 << "个用户的性别" << endl;
+			while (1)
+			{
+				if (size(p->data.name) < 4 || size(p->data.name) > 12)
+				{
+					cout << "昵称的位数要求是4-12位，请你重新输入" << endl;
+					cin >> p->data.name;
+				}
+				else
+				{
+					break;
+				}
+			}
+			cout << "请输入第" << i + 1 << "个用户的性别(男:m   女:f)" << endl;
 			cin >> p->data.sex;
+			while (1)
+			{
+				if (p->data.sex == 'm' || p->data.sex == 'f')
+					break;
+				else
+				{
+					cout << "请按照格式要求再次输入性别！" << endl;
+					cin >> p->data.sex;
+				}
+			}
 			cout << "请输入第" << i + 1 << "个用户的年龄" << endl;
 			cin >> p->data.age;
 			p->next = L->next;
 			L->next = p;
+			cout << "添加成功！" << endl;
+			system("pause");
 		}
 	}
 }
@@ -128,18 +154,29 @@ int DeleteUser(LinkList &L)
 					else
 						break;
 				}
-				while ((p->next) && (j < i))//这里与上面结合，因此i不再是i-1了
+				int  flag3;
+				cout << "请你选择是否删除（1.是 2.否）" << endl;
+				cin >> flag3;
+				if (flag3 == 1)
 				{
-					p = p->next;
-					++j;
+					while ((p->next) && (j < i))//这里与上面结合，因此i不再是i-1了
+					{
+						p = p->next;
+						++j;
+					}
+					if (!(p->next) || (j > i))//这里同样不再是i-1了
+						return ERROR;
+					q = p->next;
+					p->next = q->next;
+					delete q;
+					cout << "删除成功！" << endl;
+					system("pause");
+					break;
 				}
-				if (!(p->next) || (j > i ))//这里同样不再是i-1了
-					return ERROR;
-				q = p->next;
-				p->next = q->next;
-				delete q;
-				cout << "删除成功！" << endl;
-				break;
+				else
+				{
+					break;
+				}
 			case 2://这里是根据用户昵称来进行用户信息的删除
 				cout << "请输入你想要删除的用户的昵称" << endl;
 				cin >> ID;
@@ -150,31 +187,57 @@ int DeleteUser(LinkList &L)
 					cout << std::left << setw(16) << p->data.id << setw(16) << p->data.name << setw(16) << p->data.sex << p->data.age << "\n";
 					p = p->next;
 				}
-				cout << "请输入你想要删除的用户的手机号";
-				cin >> ID;
-				p = L;
-				t = L->next;
-				for (i = 0; i < LengthUser(L); i++)
+				while (1)
 				{
-					if (ID == t->data.id)
+					cout << "请输入你想要删除的用户的手机号";
+					cin >> ID;
+					p = L;
+					t = L->next;
+					for (i = 0; i < LengthUser(L); i++)
 					{
+						if (ID == t->data.id)//找到了这个id，退出循环
+						{
+							break;
+						}
+						else
+						{
+							t = t->next;
+						}
+					}
+					if (t->next == NULL)
+					{
+						cout << "你想要删除的手机号不存在，请重新输入！" << endl;
+						system("pause");
 						break;
+					}
+					int flag;
+					cout << "请确认是否删除此用户（1.确定  2.取消）" << endl;
+					cin>>flag;
+					if (flag == 1)
+					{
+						while ((p->next) && (j < i))
+						{
+							p = p->next;
+							++j;
+						}
+						if (!(p->next) || (j > i))
+							return ERROR;
+						q = p->next;
+						p->next = q->next;
+						delete q;
+						cout << "删除成功！" << endl;
+						system("pause");
+						break;
+
 					}
 					else
 					{
-						t = t->next;
+						break;
 					}
+					
+					
 				}
-				while ((p->next) && (j < i))
-				{
-					p = p->next;
-					++j;
-				}
-				if (!(p->next) || (j > i))
-					return ERROR;
-				q = p->next;
-				p->next = q->next;
-				delete q;
+				
 			case 0:
 				break;
 			default:
